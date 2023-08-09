@@ -3,6 +3,7 @@
 
 import uuid
 from datetime import datetime
+from models.engine import storage
 
 
 class BaseModel:
@@ -24,14 +25,15 @@ class BaseModel:
     def __str__(self):
         """Return a string representation of the BaseModel instance."""
         return "[{}] ({}) {}".format(
-                self.__class__.__name__,
-                self.id,
-                self.__dict__
+            self.__class__.__name__,
+            self.id,
+            self.__dict__
         )
 
     def save(self):
         """Update public instance attribute updated_at with current datetime"""
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """
@@ -45,3 +47,17 @@ class BaseModel:
         data['created_at'] = self.created_at.isoformat()
         data['updated_at'] = self.updated_at.isoformat()
         return data
+
+    @classmethod
+    def from_dict(cls, data):
+        """
+        Create a BaseModel instance from a dictionary representation.
+
+        Args:
+            data (dict): Dictionary containing attributes for the instance.
+
+        Returns:
+            BaseModel: An instance of the BaseModel class.
+        """
+        instance = cls(**data)
+        return instance
