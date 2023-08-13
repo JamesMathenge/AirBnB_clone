@@ -5,7 +5,7 @@ import json
 
 
 class FileStorage:
-    """FileStorage class that serializes/deserializes instances to/from JSON file."""
+    """FileStorage class serializes/deserializes instances to/from JSON file"""
 
     __file_path = "file.json"
     __objects = {}
@@ -21,8 +21,10 @@ class FileStorage:
 
     def save(self):
         """Serialize __objects to the JSON file."""
-        serialized_objects = {key: obj.to_dict()
-                            for key, obj in self.__objects.items()}
+        serialized_objects = {
+                key: obj.to_dict()
+                for key, obj in self.__objects.items()
+        }
         with open(self.__file_path, 'w') as file:
             json.dump(serialized_objects, file)
 
