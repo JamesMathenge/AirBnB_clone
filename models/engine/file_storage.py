@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module for FileStorage class.""" 
+"""Module for FileStorage class."""
 import json
 import datetime
 import os
@@ -29,13 +29,11 @@ class FileStorage:
 
     def reload(self):
         """Deserialize the JSON file to __objects."""
-        try:
+        if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r') as file:
                 data = json.load(file)
                 for key, value in data.items():
                     cls_name = value['__class__']
-                    cls = globals()[cls_name]
+                    cls = getattr(models, cls_name)
                     obj = cls(**value)
                     self.__objects[key] = obj
-        except FileNotFoundError:
-            pass
