@@ -41,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """Print the string representation of an instance."""
-        args = args.split()
+        args = arg.split()
         if not args:
             print("** class name missing **")
         elif args[0] not in BaseModel.__subclasses__():
@@ -50,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             obj_dict = storage.all()
-            key = "{}.{}" .format(args[0], args[1])
+            key = "{}.{}".format(args[0], args[1])
             if key in obj_dict:
                 print(obj_dict[key])
             else:
@@ -81,8 +81,8 @@ class HBNBCommand(cmd.Cmd):
             print([str(obj) for obj in obj_dict.values()])
         elif arg in BaseModel.__subclasses__():
             print([
-                 str(obj) for key, obj in obj_dict.items()
-                 if key.startswith(arg)
+                str(obj) for key, obj in obj_dict.items()
+                if key.startswith(arg)
             ])
         else:
             print("** class doesn't exist **")
