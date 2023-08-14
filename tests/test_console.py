@@ -1,16 +1,5 @@
-#!/usr/bin/python
-"""Defines unittest for console.py.
-Unittest classes:
-    TestHBNBCommand_prompting
-    TestHBNBCommand_exist
-    TestHBNBCommand_help
-    TestHBNBCommand_create
-    TestHBNBCommand_show
-    TestHBNBCommand_destroy
-    TestHBNBCommand_all
-    TestHBNBCommand_update
-"""
 
+<<<<<<< HEAD
 import sys
 import os
 import unittest
@@ -103,3 +92,5 @@ class TestHBNBCommand_help(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output
         self.assertFalse(HBNBCommand().onecmd("help"))
         self.assertEquals(H,output().getvalue().strip())
+=======
+>>>>>>> 392fabc4174bd979ca6369a127bdc9d3c95b9f36

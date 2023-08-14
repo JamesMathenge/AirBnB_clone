@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 0x00. AirBnB clone - The console
 
 ## Table of contents
@@ -56,3 +57,6 @@ EOF help quit
 (hbnb)
 (hbnb)
 (hbnb) quit
+=======
+0x00. AirBnB clone - The console
+>>>>>>> 392fabc4174bd979ca6369a127bdc9d3c95b9f36

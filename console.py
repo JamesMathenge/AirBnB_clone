@@ -41,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """Print the string representation of an instance."""
-        args = args.split()
+        args = arg.split()
         if not args:
             print("** class name missing **")
         elif args[0] not in BaseModel.__subclasses__():
@@ -50,23 +50,40 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             obj_dict = storage.all()
-            key = "{}.{}" .format(args[0], args[1])
+            key = "{}.{}".format(args[0], args[1])
             if key in obj_dict:
                 print(obj_dict[key])
             else:
                 print("** no instance found **")
 
+    def do_destroy(self, arg):
+        """Delete an instance based on the class name and id."""
+        args = arg.split()
+        if not args:
+            print("** class name missing **")
+        elif args[0] not in BaseModel.__subclasses__():
+            print("** class doesn't exist **")
+        elif len(args) < 2:
+            print("** instance id missing **")
+        else:
+            obj_dict = storage.all()
+            key = "{}.{}".format(args[0], args[1])
+            if key in obj_dict:
+                del obj_dict[key]
+                storage.save()
+            else:
+                print("** no instance found **")
+
     def do_all(self, arg):
-        """Print all strins representations of instances."""
+        """Print all string representations of instances."""
         obj_dict = storage.all()
         if not arg:
             print([str(obj) for obj in obj_dict.values()])
-        elif arg in BaseModel.__sunclasses__():
+        elif arg in BaseModel.__subclasses__():
             print([
-                str(obj)
-                for key, obj in obj_dict.items()
-                if key.startwith(arg)
-                ])
+                str(obj) for key, obj in obj_dict.items()
+                if key.startswith(arg)
+            ])
         else:
             print("** class doesn't exist **")
 
@@ -95,5 +112,5 @@ class HBNBCommand(cmd.Cmd):
             instance.save()
 
 
-if __name__ == '__name__':
+if __name__ == '__main__':
     HBNBCommand().cmdloop()
