@@ -36,5 +36,6 @@ class FileStorage:
                 for key, value in data.items():
                     cls_name = value['__class__']
                     cls = getattr(models, cls_name)
-                    obj = cls(**value)
-                    self.__objects[key] = obj
+                    if cls:
+                        obj = cls(**value)
+                        self.__objects[key] = obj
