@@ -31,11 +31,9 @@ class FileStorage:
     def reload(self):
         """Deserialize the JSON file to __objects."""
         if os.path.exists(self.__file_path):
-            with open(self.__file_path, 'r') as file:
-                data = json.load(file)
-                for key, value in data.items():
-                    cls_name = value['__class__']
-                    cls = getattr(models, cls_name)
-                    if cls:
-                        obj = cls(**value)
-                        self.__objects[key] = obj
+            with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
+                obj_dict = json.load(f)
+                classes = self.classes()
+                obj_dict = {k: classes[v["__class__"]](**v)
+                            for k, v in obj_dict.items()}
+                FileStorage.__objects = obj_dict
