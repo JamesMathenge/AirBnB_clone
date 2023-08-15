@@ -39,6 +39,15 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsInstance(obj_dict, dict)
         self.assertIs(obj_dict, self.storage._FileStorage__objects)
 
+     def test_new(self):
+        """Test the new() method."""
+        new_model = BaseModel()
+        key = "{}.{}".format(type(new_model).__name__, new_model.id)
+        self.assertNotIn(key, self.storage.all())
+        self.storage.new(new_model)
+        self.assertIn(key, self.storage.all())
+        self.assertIs(self.storage.all()[key], new_model)
+
     def test_save_reload(self):
         """Test the save and reload methods."""
         new_model = BaseModel()
