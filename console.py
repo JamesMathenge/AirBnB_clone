@@ -30,6 +30,30 @@ class HBNBCommand(cmd.Cmd):
         """Do nothing on an empty line."""
         pass
 
+    def default(self, line):
+        """Called input line when command prefix not recognized."""
+        class_name = line.split('.')[0]
+        if class_name in storage.classes():
+            method_name = line.split('(')[1].split(')')[0]
+            if method_name == 'count':
+                self.do_count(class_name)
+        else:
+            print("*** Unknown syntax: {}".format(line))
+
+    def postcmd(self, stop, line):
+        """Hook method executed just when command dispatch finished"""
+        if "." in line:
+            parts = line.split('.')
+            if len(parts) == 2:
+                class_name, method_name = parts
+                if method_name == "all()":
+                    self.do_all(class_name)
+                    return False
+                elif method_name == "count()":
+                    self.do_count(class_name)
+                    return False
+        return stop
+
     def do_create(self, line):
         """Creates a new instance of BaseModel"""
         args = line.split()
@@ -89,12 +113,17 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, line):
         """Prints all string representation of all instances"""
-        args = line.split()
-        if args and args[0] not in storage.classes():
-            print("** class doesn't exist **")
+        if line != "":
+            words = line.split(' ')
+            if words[0] not in storage.classes():
+                print("** class doesn't exist **")
+            else:
+                nl = [str(obj) for key, obj in storage.all().items()
+                      if type(obj).__name__ == words[0]]
+                print(nl)
         else:
-            instances = storage.all()
-            print([str(instance) for instance in instances.values()])
+            new_list = [str(obj) for key, obj in storage.all().items()]
+            print(new_list)
 
     def do_update(self, line):
         """Updates an instance based on the class name and id"""
@@ -126,6 +155,15 @@ class HBNBCommand(cmd.Cmd):
         instance = instances[obj_key]
         setattr(instance, attribute_name, attribute_value)
         instance.save()
+
+    def do_count(self, class_name):
+        """Count the number of instances of a class."""
+        if class_name not in storage.classes():
+            print("** class doesn't exist **")
+        else:
+            instances_count = len([obj for obj in storage.all().values()
+                                   if type(obj).__name__ == class_name])
+            print(instances_count)
 
 
 if __name__ == '__main__':
