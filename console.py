@@ -73,7 +73,8 @@ class HBNBCommand(cmd.Cmd):
         args = args.split()
         if not args:
             print("** class name missing **")
-        elif args[0] not in BaseModel.__subclasses__():
+        elif args[0] not in [cls.__name__
+                             for cls in BaseModel.__subclasses__()]:
             print("** class doesn't exist **")
         elif len(args) < 2:
             print("** instance id missing **")
