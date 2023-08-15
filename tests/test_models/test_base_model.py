@@ -19,7 +19,7 @@ class TestBaseModel(unittest.TestCase):
 
     def setUp(self):
         """Sets up test methods."""
-        self.model = BaseModel()
+        pass
 
     def tearDown(self):
         """Tears down test methods."""
