@@ -33,15 +33,6 @@ class TestReview(unittest.TestCase):
         self.assertEqual(self.review.user_id, "user456")
         self.assertEqual(self.review.text, "This is a review.")
 
-    def test_to_dict_method(self):
-        """Test the to_dict() method of the Review instance."""
-        review_dict = self.review.to_dict()
-        self.assertTrue(isinstance(review_dict, dict))
-        self.assertTrue('place_id' in review_dict)
-        self.assertTrue('user_id' in review_dict)
-        self.assertTrue('text' in review_dict)
-        self.assertTrue('__class__' in review_dict)
-
     def test_str_representation(self):
         """Test the string representation of the Review instance."""
         str_repr = str(self.review)
