@@ -39,7 +39,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsInstance(obj_dict, dict)
         self.assertIs(obj_dict, self.storage._FileStorage__objects)
 
-     def test_new(self):
+    def test_new(self):
         """Test the new() method."""
         new_model = BaseModel()
         key = "{}.{}".format(type(new_model).__name__, new_model.id)
