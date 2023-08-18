@@ -1,6 +1,6 @@
 # 0x00. AirBnB clone - The console
 
-![Picture](https://drive.google.com/file/d/11H2l8jTxuVOx6hLxtrZVXgNFjlkoBVEL/view?usp=sharing)
+![Picture](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mavencluster.com%2Fblog%2Fbuild-app-like-airbnb%2F&psig=AOvVaw3bnow3NRh4lq19Y_bf374R&ust=1692465004721000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCKDKts3Z5oADFQAAAAAdAAAAABAJ)
 
 # Background Context
 
