@@ -1,6 +1,6 @@
 # 0x00. AirBnB clone - The console
 
-![Picture](https://github.com/topics/alx?l=python&o=desc&s=forks)
+![Picture](https://drive.google.com/file/d/11H2l8jTxuVOx6hLxtrZVXgNFjlkoBVEL/view?usp=drive_link)
 
 # Background Context
 
