@@ -1,7 +1,5 @@
 # 0x00. AirBnB clone - The console
 
-![Picture]
-
 # Background Context
 
 ## Welcome to the AirBnB clone project!
@@ -99,5 +97,3 @@ EOF  help  quit
 $
 ```
 All tests should also pass in non-interactive mode: `$ echo "python3 -m unittest discover tests" | bash`
-
-
